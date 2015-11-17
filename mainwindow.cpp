@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     delete cl;
 
     EnvironmentBox *eb = new EnvironmentBox();
+    // TODO : get the result of eb and check if close or continue
+    // remove exit from the class envvibox
 
     create();
     display();

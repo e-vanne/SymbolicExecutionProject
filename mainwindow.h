@@ -9,6 +9,8 @@
 #include "checklaunch.h"
 #include "menubar.h"
 #include "environmentbox.h"
+#include "kleeenvironment.h"
+#include "symnetenvironment.h"
 
 class MainWindow : public QMainWindow
 {

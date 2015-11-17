@@ -31,11 +31,12 @@ class EnvironmentBox : public QDialog
         QPushButton *edit;
         QPushButton *close;
 
-        QFileDialog browse;
+        QFileDialog *browse;
 
         void create();
         void createEdit();
         void createButton();
+        void createBrowse();
         void createLayout();
 
     private slots:

@@ -36,6 +36,9 @@ void EnvironmentBox::createEdit()
 {
     kleePath = new QLineEdit();
     symnetPath = new QLineEdit();
+
+    kleePath->setReadOnly(true);
+    symnetPath->setReadOnly(true);
 }
 
 void EnvironmentBox::createLayout()
@@ -100,6 +103,11 @@ void EnvironmentBox::createButton()
     connect(edit, SIGNAL(clicked()), this, SLOT(close()));
 
     // TODO : connect to the QFileBox and retrieve path
+}
+
+void EnvironmentBox::createBrowse()
+{
+    browse = new QFileDialog();
 }
 
 void EnvironmentBox::exitProgram()

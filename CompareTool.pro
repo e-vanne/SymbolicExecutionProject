@@ -6,7 +6,10 @@ SOURCES += main.cpp \
     displayfile.cpp \
     checklaunch.cpp \
     menubar.cpp \
-    environmentbox.cpp
+    environmentbox.cpp \
+    environmentpath.cpp \
+    kleeenvironment.cpp \
+    symnetenvironment.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -14,5 +17,8 @@ HEADERS += \
     libstring.h \
     checklaunch.h \
     menubar.h \
-    environmentbox.h
+    environmentbox.h \
+    environmentpath.h \
+    kleeenvironment.h \
+    symnetenvironment.h
 
