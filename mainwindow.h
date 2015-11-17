@@ -3,10 +3,12 @@
 
 #include <QThread>
 #include <QMainWindow>
+#include <QSplitter>
 
 #include "displayfile.h"
 #include "checklaunch.h"
 #include "menubar.h"
+#include "environmentbox.h"
 
 class MainWindow : public QMainWindow
 {
@@ -20,9 +22,11 @@ class MainWindow : public QMainWindow
         DisplayFile *cplusplus;
         MenuBar *menuBar;
 
+        QSplitter *splitter;
+
         void create();
         void createClass();
-
+        void createSplitter();
         void createLayout();
 
         void display();

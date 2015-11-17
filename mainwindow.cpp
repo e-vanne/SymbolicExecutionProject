@@ -11,6 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QThread::usleep(10000);
     delete cl;
 
+    EnvironmentBox *eb = new EnvironmentBox();
+
     create();
     display();
 }
@@ -19,11 +21,13 @@ MainWindow::~MainWindow() {
     delete click;
     delete cplusplus;
     delete menuBar;
+
+    delete splitter;
 }
 
 void MainWindow::create() {
     createClass();
-
+    createSplitter();
     createLayout();
 }
 
@@ -33,14 +37,24 @@ void MainWindow::createClass() {
     menuBar = new MenuBar();
 }
 
-void MainWindow::createLayout() {
-    QWidget *central = new QWidget();
-    QGridLayout *mainLayout = new QGridLayout();
+void MainWindow::createSplitter() {
+    splitter = new QSplitter(Qt::Horizontal);
 
-    mainLayout->addWidget(click, 0, 0);
-    mainLayout->addWidget(cplusplus, 0, 1);
+    splitter->addWidget(click);
+    splitter->addWidget(cplusplus);
+
+    splitter->setCollapsible(splitter->indexOf(click), false);
+    splitter->setCollapsible(splitter->indexOf(cplusplus), false);
+}
+
+void MainWindow::createLayout() {
+    QWidget *central = new QWidget;
+    QGridLayout *mainLayout = new QGridLayout;
+
+    mainLayout->addWidget(splitter);
 
     central->setLayout(mainLayout);
+
     this->setCentralWidget(central);
 }
 
