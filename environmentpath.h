@@ -4,21 +4,25 @@
 #include <QString>
 #include <QFile>
 #include <QProcess>
+#include <QDebug>
+#include <QString>
+#include <QObject>
+#include <QStringList>
+#include <QElapsedTimer>
+#include <QEventLoop>
 
-class EnvironmentPath
+class EnvironmentPath : public QObject
 {
     public:
-        EnvironmentPath();
+        EnvironmentPath(QObject *parent = 0);
 
-    private:
-        QFile *path;    // path of the environment
-        QString option; // option of the system call
-        QProcess *process;  // system call
-
-    public slots:
         void updatePath(QString);
-        void updateOption(QString);
-        void execute();
+        void updatePathFile(QString);
+
+    protected:
+        QString path;    // path of the environment
+        QString pathFile; // option of the system call
+        QElapsedTimer timer;
 };
 
 #endif // ENVIRONMENTPATH_H

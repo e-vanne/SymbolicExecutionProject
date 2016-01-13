@@ -13,6 +13,8 @@
 #include <QDialogButtonBox>
 #include <QLabel>
 #include <QLineEdit>
+#include <QStringList>
+#include <QDebug>
 
 class EnvironmentBox : public QDialog
 {
@@ -21,17 +23,25 @@ class EnvironmentBox : public QDialog
         EnvironmentBox(QWidget *parent = 0);
         ~EnvironmentBox();
 
+        QString getKleePath();
+        QString getKleePathFile();
+        QString getSymnetPath();
+
     private:
         QLineEdit *kleePath;
+        QLineEdit *kleeFile;
         QLineEdit *symnetPath;
 
         QPushButton *klee;
+        QPushButton *kleeF;
         QPushButton *symnet;
 
         QPushButton *edit;
         QPushButton *close;
 
-        QFileDialog *browse;
+        QFileDialog *browseK;
+        QFileDialog *browseKF;
+        QFileDialog *browseS;
 
         void create();
         void createEdit();
@@ -41,6 +51,10 @@ class EnvironmentBox : public QDialog
 
     private slots:
         void exitProgram();
+        void browseKFFile();
+        void browseKFile();
+        void browseSFile();
+        void unlockEdit();
 
     signals:
         void updateKleePath(QString);

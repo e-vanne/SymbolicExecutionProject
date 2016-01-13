@@ -25,7 +25,7 @@ MenuBar::~MenuBar() {
  *  | - Contact
  */
 void MenuBar::create() {
-    aboutMenu = new QMenu(tr("&Help"));
+    aboutMenu = new QMenu(tr("Help"));
     version = new QLabel(tr("Version : %1").arg(NUMBER_OF_VERSION));
     aboutAction = new QAction("About", aboutMenu);
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(aboutBox()));

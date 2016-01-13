@@ -8,6 +8,8 @@
 #include <QMenuBar>
 #include <QAction>
 #include <QLabel>
+#include <QString>
+#include <QtCore>
 
 #include "libstring.h"
 

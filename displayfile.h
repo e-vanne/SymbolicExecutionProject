@@ -2,9 +2,7 @@
 #define DISPLAYFILE_H
 
 #include <QWidget>
-#include <QFile>
 #include <QTextEdit>
-#include <QTextStream>
 #include <QLabel>
 #include <QGridLayout>
 
@@ -17,9 +15,11 @@ class DisplayFile : public QWidget
         DisplayFile(QWidget *parent = 0);
         ~DisplayFile();
 
+        void updateNameEnv(QString);
+
     private:
-        QLabel *nameFile;
-        QTextStream qts;
+        QLabel *nameDir;
+        //QTextStream qts;
         QTextEdit *qte;
 
         void create();
@@ -28,7 +28,7 @@ class DisplayFile : public QWidget
         void createLayout();
 
     public slots:
-        void updateTextArea(QFile *f);
+        void updateTextArea(QString);
 };
 
 #endif // DISPLAYFILE_H

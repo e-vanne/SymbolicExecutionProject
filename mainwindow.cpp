@@ -11,12 +11,16 @@ MainWindow::MainWindow(QWidget *parent) :
     QThread::usleep(10000);
     delete cl;
 
-    EnvironmentBox *eb = new EnvironmentBox();
-    // TODO : get the result of eb and check if close or continue
-    // remove exit from the class envvibox
+    initClass();
+
+    eb->exec();
+
+    initVar();
 
     create();
     display();
+    QThread::usleep(10000);
+    ke->execute();
 }
 
 MainWindow::~MainWindow() {
@@ -27,26 +31,63 @@ MainWindow::~MainWindow() {
     delete splitter;
 }
 
+void MainWindow::initClass()
+{
+    click = new DisplayFile();
+    cplusplus = new DisplayFile();
+    clickR = new DisplayResult();
+    cplusplusR = new DisplayResult();
+
+    menuBar = new MenuBar();
+
+    eb = new EnvironmentBox();
+
+    ke = new KleeEnvironment();
+    se = new SymnetEnvironment();
+
+    connect(ke, SIGNAL(updateExecTime(QString)), cplusplusR, SLOT(updateExecTime(QString)));
+    connect(ke, SIGNAL(updateNbrCompleted(QString)), cplusplusR, SLOT(updateNbrCompleted(QString)));
+    connect(ke, SIGNAL(updateNbrGenerated(QString)), cplusplusR, SLOT(updateNbrGenerated(QString)));
+    connect(ke, SIGNAL(updateNbrInstructions(QString)), cplusplusR, SLOT(updateNbrInstructions(QString)));
+    connect(ke, SIGNAL(updateDisplay(QString)), cplusplus, SLOT(updateTextArea(QString)));
+}
+
+void MainWindow::initVar()
+{
+    ke->updatePath(eb->getKleePath());
+    ke->updatePathFile(eb->getKleePathFile());
+    se->updatePath(eb->getSymnetPath());
+
+    click->updateNameEnv(eb->getSymnetPath());
+    cplusplus->updateNameEnv(eb->getKleePath());
+}
+
 void MainWindow::create() {
-    createClass();
     createSplitter();
     createLayout();
 }
 
-void MainWindow::createClass() {
-    click = new DisplayFile();
-    cplusplus = new DisplayFile();
-    menuBar = new MenuBar();
-}
-
 void MainWindow::createSplitter() {
     splitter = new QSplitter(Qt::Horizontal);
+    QWidget *left = new QWidget();
+    QWidget *right = new QWidget();
 
-    splitter->addWidget(click);
-    splitter->addWidget(cplusplus);
+    QGridLayout *rightL = new QGridLayout();
+    QGridLayout *leftL = new QGridLayout();
 
-    splitter->setCollapsible(splitter->indexOf(click), false);
-    splitter->setCollapsible(splitter->indexOf(cplusplus), false);
+    rightL->addWidget(click, 0, 0);
+    rightL->addWidget(clickR, 1, 0);
+    leftL->addWidget(cplusplus, 0, 0);
+    leftL->addWidget(cplusplusR, 1, 0);
+
+    right->setLayout(rightL);
+    left->setLayout(leftL);
+
+    splitter->addWidget(left);
+    splitter->addWidget(right);
+
+    splitter->setCollapsible(splitter->indexOf(left), false);
+    splitter->setCollapsible(splitter->indexOf(right), false);
 }
 
 void MainWindow::createLayout() {
@@ -62,7 +103,8 @@ void MainWindow::createLayout() {
 
 void MainWindow::display() {
     this->setMenuBar(menuBar);
-    this->setFixedSize(QSize(1024,708));
+    menuBar->show();
+    this->setFixedSize(QSize(1280,1024));
     this->setEnabled(true);
     this->show();
 }

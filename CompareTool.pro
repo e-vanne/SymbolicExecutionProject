@@ -9,7 +9,8 @@ SOURCES += main.cpp \
     environmentbox.cpp \
     environmentpath.cpp \
     kleeenvironment.cpp \
-    symnetenvironment.cpp
+    symnetenvironment.cpp \
+    displayresult.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -20,5 +21,6 @@ HEADERS += \
     environmentbox.h \
     environmentpath.h \
     kleeenvironment.h \
-    symnetenvironment.h
+    symnetenvironment.h \
+    displayresult.h
 

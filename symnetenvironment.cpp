@@ -1,7 +1,11 @@
 #include "symnetenvironment.h"
 
-SymnetEnvironment::SymnetEnvironment()
+SymnetEnvironment::SymnetEnvironment() : EnvironmentPath()
 {
 
 }
 
+void SymnetEnvironment::execute()
+{
+
+}

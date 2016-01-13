@@ -1,21 +1,21 @@
 #include "environmentpath.h"
 
-EnvironmentPath::EnvironmentPath()
+EnvironmentPath::EnvironmentPath(QObject *parent) :
+    QObject(parent)
 {
     // nothing to do
 }
 
-void EnvironmentPath::updatePath(QString)
+void EnvironmentPath::updatePath(QString sPath)
 {
     // TODO : update path
+    path = sPath;
+    qDebug() << path;
 }
 
-void EnvironmentPath::updateOption(QString)
+void EnvironmentPath::updatePathFile(QString sPathFile)
 {
-    // TODO : update option
-}
-
-void EnvironmentPath::execute()
-{
-    // TODO : do something avec QProcess
+    pathFile = sPathFile;
+    pathFile = pathFile.replace(path, "/vagrant");
+    qDebug() << pathFile;
 }
