@@ -14,6 +14,7 @@ DisplayFile::~DisplayFile()
 
 void DisplayFile::create()
 {
+    text = "";
     createQTE();
     createLabel();
     createLayout();
@@ -43,10 +44,15 @@ void DisplayFile::createLayout()
 
 void DisplayFile::updateTextArea(QString display)
 {
-    qte->setText(display);
+    text += display;
 }
 
 void DisplayFile::updateNameEnv(QString nameEnv)
 {
     nameDir->setText(fileLoad + nameEnv);
+}
+
+void DisplayFile::displayText()
+{
+    qte->append(text);
 }

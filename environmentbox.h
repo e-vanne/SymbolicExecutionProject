@@ -15,6 +15,7 @@
 #include <QLineEdit>
 #include <QStringList>
 #include <QDebug>
+#include <QDir>
 
 class EnvironmentBox : public QDialog
 {

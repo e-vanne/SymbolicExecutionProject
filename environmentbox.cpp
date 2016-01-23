@@ -9,13 +9,19 @@ EnvironmentBox::EnvironmentBox(QWidget *parent) :
 EnvironmentBox::~EnvironmentBox()
 {
     delete kleePath;
+    delete kleeFile;
     delete symnetPath;
 
     delete klee;
+    delete kleeF;
     delete symnet;
 
     delete edit;
     delete close;
+
+    delete browseK;
+    delete browseKF;
+    delete browseS;
 }
 
 QString EnvironmentBox::getKleePathFile()
@@ -50,7 +56,7 @@ void EnvironmentBox::createEdit()
 {
     kleePath = new QLineEdit("Select the directory of klee");
     kleeFile = new QLineEdit("Select the directory of the file to analyze");
-    symnetPath = new QLineEdit();
+    symnetPath = new QLineEdit("Select the directory of symnet");
 
     kleePath->setReadOnly(true);
     kleeFile->setReadOnly(true);
@@ -137,14 +143,17 @@ void EnvironmentBox::createButton()
 void EnvironmentBox::createBrowse()
 {
     browseK = new QFileDialog(0, "Locate Klee directory...");
+    browseK->setDirectory(QDir::homePath());
     browseK->setViewMode(QFileDialog::Detail);
     browseK->setFileMode(QFileDialog::DirectoryOnly);
 
     browseKF = new QFileDialog(0, "Locate Klee file to analyze...");
+    browseKF->setDirectory(QDir::homePath());
     browseKF->setViewMode(QFileDialog::Detail);
     browseKF->setFileMode(QFileDialog::DirectoryOnly);
 
     browseS = new QFileDialog(0, "Locate Symnet directory...");
+    browseS->setDirectory(QDir::homePath());
     browseS->setViewMode(QFileDialog::Detail);
     browseS->setFileMode(QFileDialog::DirectoryOnly);
 }

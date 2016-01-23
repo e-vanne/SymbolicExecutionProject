@@ -18,17 +18,22 @@ MainWindow::MainWindow(QWidget *parent) :
     initVar();
 
     create();
-    display();
-    QThread::usleep(10000);
     ke->execute();
+    se->execute();
+    display();
 }
 
 MainWindow::~MainWindow() {
     delete click;
+    delete clickR;
     delete cplusplus;
+    delete cplusplusR;
     delete menuBar;
 
     delete splitter;
+    delete eb;
+    delete ke;
+    delete se;
 }
 
 void MainWindow::initClass()
@@ -50,6 +55,13 @@ void MainWindow::initClass()
     connect(ke, SIGNAL(updateNbrGenerated(QString)), cplusplusR, SLOT(updateNbrGenerated(QString)));
     connect(ke, SIGNAL(updateNbrInstructions(QString)), cplusplusR, SLOT(updateNbrInstructions(QString)));
     connect(ke, SIGNAL(updateDisplay(QString)), cplusplus, SLOT(updateTextArea(QString)));
+    connect(ke, SIGNAL(processingEnd()), cplusplus, SLOT(displayText()));
+
+    connect(se, SIGNAL(updateExecTime(QString)), clickR, SLOT(updateExecTime(QString)));
+    connect(se, SIGNAL(updateNbrCompleted(QString)), clickR, SLOT(updateNbrCompleted(QString)));
+    connect(se, SIGNAL(updateNbrGenerated(QString)), clickR, SLOT(updateNbrGenerated(QString)));
+    connect(se, SIGNAL(updateDisplay(QString)), click, SLOT(updateTextArea(QString)));
+    connect(se, SIGNAL(processingEnd()), click, SLOT(displayText()));
 }
 
 void MainWindow::initVar()
@@ -104,7 +116,7 @@ void MainWindow::createLayout() {
 void MainWindow::display() {
     this->setMenuBar(menuBar);
     menuBar->show();
-    this->setFixedSize(QSize(1280,1024));
+    this->setFixedSize(QSize(1280,720));
     this->setEnabled(true);
     this->show();
 }

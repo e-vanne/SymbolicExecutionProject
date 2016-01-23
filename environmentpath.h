@@ -10,12 +10,13 @@
 #include <QStringList>
 #include <QElapsedTimer>
 #include <QEventLoop>
+#include <QThread>
 
 class EnvironmentPath : public QObject
 {
     public:
         EnvironmentPath(QObject *parent = 0);
-
+        ~EnvironmentPath();
         void updatePath(QString);
         void updatePathFile(QString);
 

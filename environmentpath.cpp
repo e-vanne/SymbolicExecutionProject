@@ -6,16 +6,18 @@ EnvironmentPath::EnvironmentPath(QObject *parent) :
     // nothing to do
 }
 
+EnvironmentPath::~EnvironmentPath()
+{
+
+}
+
 void EnvironmentPath::updatePath(QString sPath)
 {
-    // TODO : update path
     path = sPath;
-    qDebug() << path;
 }
 
 void EnvironmentPath::updatePathFile(QString sPathFile)
 {
     pathFile = sPathFile;
     pathFile = pathFile.replace(path, "/vagrant");
-    qDebug() << pathFile;
 }

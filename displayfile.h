@@ -19,8 +19,8 @@ class DisplayFile : public QWidget
 
     private:
         QLabel *nameDir;
-        //QTextStream qts;
         QTextEdit *qte;
+        QString text;
 
         void create();
         void createQTE();
@@ -29,6 +29,7 @@ class DisplayFile : public QWidget
 
     public slots:
         void updateTextArea(QString);
+        void displayText();
 };
 
 #endif // DISPLAYFILE_H

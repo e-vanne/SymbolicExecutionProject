@@ -8,7 +8,15 @@ DisplayResult::DisplayResult(QWidget *parent) :
 
 DisplayResult::~DisplayResult()
 {
+    delete LexecTime;
+    delete LgeneratedPath;
+    delete LpathCompleted;
+    delete LnumberInstruction;
 
+    delete EexecTime;
+    delete EgeneratedPath;
+    delete EpathCompleted;
+    delete EnumberInstruction;
 }
 
 void DisplayResult::create()

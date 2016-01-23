@@ -12,10 +12,10 @@ MenuBar::MenuBar(QWidget * parent) : QMenuBar(parent) {
  * Desctructive of MenuBar class.
  */
 MenuBar::~MenuBar() {
-    delete aboutMenu;
     delete version;
     delete aboutAction;
     delete contactAction;
+    delete aboutMenu;
 }
 
 /*

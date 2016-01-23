@@ -10,7 +10,8 @@ SOURCES += main.cpp \
     environmentpath.cpp \
     kleeenvironment.cpp \
     symnetenvironment.cpp \
-    displayresult.cpp
+    displayresult.cpp \
+    processdialog.cpp
 
 HEADERS += \
     mainwindow.h \
@@ -22,5 +23,6 @@ HEADERS += \
     environmentpath.h \
     kleeenvironment.h \
     symnetenvironment.h \
-    displayresult.h
+    displayresult.h \
+    processdialog.h
 
